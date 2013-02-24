@@ -1,0 +1,40 @@
+CAP:
+  - original theorem
+  - also applies to system architecture in general
+  - with most modern internet sites, there is only really one choice, AP
+  - make the realization that to add to one stat, have to subtract from another (like D&D char sheet)
+
+CQRS:
+  - again, with most modern internet sites, the "reading" and "writing" are like 2 separate applications
+    - so why not make it 2 separate things
+    - orders of magnitude more reads, so can 10 servers that can handle reads and 1 server to handle writes
+  - the reads:
+    - don't modify the system
+    - ideally, query a cache (redis, memcached, etc) or a read-only database slave
+    - if you do need to modify the system, do it asynchronously
+
+  - the writes:
+    - do it asynchronously so you can immediately return
+      - perform validation and return Accepted/Not accepted
+    - fake it till you make it
+      - attempt to update users UI immediately, even though other users won't see it
+
+Message Queueing:
+  - our way of handling asynchronous tasks
+  - choose the implementation to suit your needs
+    - reliability guarantees vs high throughput/low latency vs complex routing/publishing scenarios
+  - dead letter saves to db/disk and is replayable pattern
+
+Releasing your software:
+  - TODO
+  
+What should be in source control:
+  - hint: it's not just your code
+  - TODO
+
+
+Your career:
+  - go to user groups
+  - do stuff on github
+  - give talks - it's scary but you will probably learn more than your audience
+  - even minor stuff immediately puts you in the top 10% of applicants

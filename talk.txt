@@ -26,12 +26,26 @@ Message Queueing:
   - dead letter saves to db/disk and is replayable pattern
 
 Releasing your software:
-  - TODO
+  * no interruption in services
+  * We were inspired by books like scalable internet architectures and release it
+  * Rolling releases - helped by the redundant architecture
+  * Schema concerns: must work with current version and next version of software - they'll both be running at the same time! if only during a release
+  * this is also true of:
+    * message queue entries, job schemas
+    * configuration files
+    * service endpoints
+    * internal APIs
+  * api versioning is a thing
+    * support multiple client versions, decouples your partners (and your own other services) from having to upgrade at the exact same time you do
+    * seems like more work, but turns out to be less than trying to synchronize 3am Saturday night releases with vendors
+    * lets you get new features into your system ahead of 'real' usage, allows you to test, and get experience with them before 'go live' time
+    * you _must_ remember to deprecate data model warts, remove old APIs
   
 What should be in source control:
-  - hint: it's not just your code
-  - TODO
-
+  * system configuration definitions (chef)
+  * your software's configuration
+  * logging configuration
+  * database schema
 
 Your career:
   - go to user groups
